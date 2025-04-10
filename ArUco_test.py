@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 from cv2 import aruco  # この行が正しいことを確認
+import matplotlib.pyplot as plt
+
 
 print(cv2.__version__)
 
@@ -26,7 +28,8 @@ def calculate_marker_properties(id_mark):
     #marker_size_ratio = 0.2  # 余白の比率
 
     # マーカーの枚数を決定
-    marker_num = 4 if id_mark // 100 <= 4 else 5 if id_mark // 100 == 5 else 1
+    # marker_num = 4 if id_mark // 100 <= 4 else 5 if id_mark // 100 == 5 else 1
+    marker_num = 4
 
     # マーカーの一辺の長さを計算
     marker_size_cm = marker_size_max / marker_num  # 面積を分割
@@ -47,7 +50,9 @@ camera_matrix = np.array([[1000, 0, 640],
 dist_coeffs = np.array([0.1, -0.25, 0.001, 0.001, 0.1], dtype=np.float32)  # k1, k2, p1, p2, k3
 
 # ArUcoマーカーの辞書を選択
-aruco_dict = aruco.getPredefinedDictionary(aruco.DICT_4X4_1000)
+aruco_dict = aruco.extendDictionary(75, 3)
+# aruco_dict = aruco.getPredefinedDictionary(aruco.DICT_4X4_1000)
+
 
 # カメラの初期化
 cap = cv2.VideoCapture(0)  # カメラデバイスID（0は通常デフォルトカメラ）
