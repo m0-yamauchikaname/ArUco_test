@@ -55,7 +55,7 @@ aruco_dict = aruco.extendDictionary(75, 3)
 
 
 # カメラの初期化
-cap = cv2.VideoCapture(0)  # カメラデバイスID（0は通常デフォルトカメラ）
+cap = cv2.VideoCapture(1)  # カメラデバイスID（0は通常デフォルトカメラ）
 
 # 歪み補正の有効/無効を切り替えるフラグ
 undistort_enabled = True
